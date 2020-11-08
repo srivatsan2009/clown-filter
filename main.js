@@ -1,5 +1,8 @@
+var nosex=0;
+var nosey=0;
 function preload() {
-
+clown_image=
+loadImage("https://i.postimg.cc/3rZVcyX6/red-nose.png");
 }
 
 function setup() {
@@ -14,6 +17,11 @@ poseNet.on('pose',getposes);
 
 function draw() {
 image(video,0,0,400,300);
+fill(234,222,111);
+stroke(0,212,124);
+//strokeWeight(2);
+//circle(nosex,nosey,30);
+image(clown_image,nosex,nosey,30,30);
 }
 
 function take_snapshot() {
@@ -27,7 +35,9 @@ console.log("posenet model is initialised");
 function getposes(results) {
 if (results.length>0) {
 console.log(results);
-console.log("nose x="+ results[0].pose.nose.x);
-console.log("nose y="+ results[0].pose.nose.y);
+nosex=results[0].pose.nose.x-15;
+nosey=results[0].pose.nose.y-15;
+console.log("nose x="+ nosex);
+console.log("nose y="+ nosey);
 }
 }
